@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Portfolio</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'core/mystyle.css' %}">
+<link rel="icon" href="{% static 'core/juanjo.png' %}" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-name">Juanjo Shlamovitz</div>
+        <div class="nav-links">
+            <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">🌙</button>
+            <a href="#Descripción">Descripción</a>
+            <a href="#Proyectos">Proyectos</a>
+            <a href="#Contactame">Contacto</a>
+            <a href="{% static 'core/CV_Juanjo_Shlamovitz.pdf' %}" target="_blank" download class="nav-cv-btn">CV</a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12" id="Descripción">
+                <h1>Juanjo Shlamovitz</h1>
+                <p>Alumno de 4to año del Instituto Industrial Luis A. Huergo, estoy trabajando con Python, donde trabajé con estructuras como árboles binarios, colas de prioridad, hashmaps y proyectos orientados a objetos. También trabajo con MySQL Workbench, manejando consultas, subconsultas, vistas, procedimientos almacenados y funciones. Me interesa seguir creciendo como desarrollador, resolviendo problemas con criterio y prolijidad.</p>
+                <a href="{% static 'core/CV_Juanjo_Shlamovitz.pdf' %}" target="_blank" download class="cv-button">Descargar CV</a>
+                <h2>Algunos de mis proyectos</h2>
+                <div class="projects-grid" id="Proyectos">
+                    <div class="project-card">
+                        <img src="{% static 'core/grid.png' %}" alt="Grid">
+                        <a href="https://github.com/Elpapu1114/Minigames/blob/main/grid.py" target="_blank">Proyecto 1 (Grid) -- Ver en GitHub</a>
+                        <p>Minijuego de conocimiento de fútbol, en el cual se deben rellenar las casillas de un cuadrado de 3 x 3 acorde a los equipos o selecciones correspondientes.</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="{% static 'core/slitherio.png' %}" alt="Slither.io">
+                        <a href="https://github.com/jsa-dev28/tp1" target="_blank">Proyecto 2 (Slither.io) -- Ver en GitHub</a>
+                        <p>Minijuego recreación de slither.io, en el cual se controla a una serpiente para comer comida y crecer evitando chocar contra otros jugadores.</p>
+                    </div>
+                    <div class="project-card">
+                        <img src="{% static 'core/futbol11.png' %}" alt="Futbol 11">
+                        <a href="https://github.com/Elpapu1114/Minigames/blob/main/f11clubes.py" target="_blank">Proyecto 3 (Futbol 11) -- Ver en GitHub</a>
+                        <p>Minijuego de conocimiento de fútbol, en el cual se debe completar una formación vacía de 11 jugadores acorde a los equipos seleccionados.</p>
+                    </div>
+                </div>
+                <section id="Contactame">
+                    <h2>Contactame</h2>
+                    <div class="social-links">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jshlamovitzalfonso@alumno.huergo.edu.ar" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://www.instagram.com/jea_028/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://github.com/jsa-dev28" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    </div>
+
+                    <form class="contact-form" action="mailto:jshlamovitzalfonso@alumno.huergo.edu.ar" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="Nombre" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="Email" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="Mensaje" placeholder="Escribí tu mensaje" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit">Enviar</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+      const toggleBtn = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      html.setAttribute('data-theme', savedTheme);
+      toggleBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+      toggleBtn.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        toggleBtn.textContent = next === 'dark' ? '🌙' : '☀️';
+      });
+    </script>
+</body>
+</html>
