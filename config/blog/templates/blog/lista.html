@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Blog</title>
+<link rel="stylesheet" href="{% static 'core/mystyle.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Blog</h1>
+        <p><a href="/">Volver al portfolio</a></p>
+        <div class="projects-grid">
+            {% for post in posts %}
+            <div class="project-card">
+                {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}">
+                {% endif %}
+                <h2><a href="{% url 'blog:detalle' post.pk %}">{{ post.titulo }}</a></h2>
+                <p>{{ post.creado|date:"d/m/Y" }}</p>
+            </div>
+            {% empty %}
+            <p>Todavía no hay entradas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>{{ post.titulo }}</title>
+<link rel="stylesheet" href="{% static 'core/mystyle.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>{{ post.titulo }}</h1>
+        <p><a href="{% url 'blog:lista' %}">Volver al blog</a></p>
+        <p>{{ post.creado|date:"d/m/Y H:i" }}</p>
+
+        {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" style="max-width: 600px; display: block; margin: 0 auto;">
+        {% endif %}
+
+        {{ post.contenido|linebreaks }}
+
+        <h2>Comentarios</h2>
+        {% for comentario in comentarios %}
+        <p><strong>{{ comentario.autor.username }}</strong> ({{ comentario.creado|date:"d/m/Y" }}): {{ comentario.texto }}</p>
+        {% empty %}
+        <p>Todavía no hay comentarios.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
