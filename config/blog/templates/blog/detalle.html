@@ -15,15 +15,21 @@
         {% if post.imagen %}
         <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" style="max-width: 600px; display: block; margin: 0 auto;">
         {% endif %}
-
         {{ post.contenido|linebreaks }}
 
         <h2>Comentarios</h2>
         {% for comentario in comentarios %}
-        <p><strong>{{ comentario.autor.username }}</strong> ({{ comentario.creado|date:"d/m/Y" }}): {{ comentario.texto }}</p>
+        <p><strong>{{ comentario.autor }}</strong> ({{ comentario.creado|date:"d/m/Y H:i" }}): {{ comentario.texto }}</p>
         {% empty %}
         <p>Todavía no hay comentarios.</p>
         {% endfor %}
+
+        <h3>Dejá tu comentario</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Comentar</button>
+        </form>
     </div>
 </body>
 </html>
