@@ -1,0 +1,2 @@
+# Bitácora
+Durante el proceso tuve algunas dificultades, como que no aparecía la página de mi proyecto cuando lo iniciaba (no había conectado la URL de la app), o que la app de blog no estaba bien configurada y por eso no aparecían "posts" y "comentarios" en la página de admin (faltaba correr "makemigrations" y "migrate"). Algo que podría haber hecho distinto es hacer que para comentar tuvieras que tener una cuenta y registrarte.
